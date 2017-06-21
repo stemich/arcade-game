@@ -1,0 +1,7 @@
+body {
+    text-align: center;
+    position: relative;
+}
+
+#Layer1 {position:absolute; z-index:0;}
+#Layer2 {position:relative; z-index:10;}

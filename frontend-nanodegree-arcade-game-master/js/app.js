@@ -70,21 +70,7 @@ Player.prototype.update = function(dt) {
     if (this.y < -20) {
       this.y = -20;};
 
-      allEnemies.forEach
-      (function(val)
-      {
-            if(val.x <= (player.x + 32) && player.x <= (val.x + 32) && val.y <= (player.y + 32) && player.y <= (val.y + 32))
-            {
 
-
-              lost();
-              textLost();
-              reset();
-
-            };
-
-
-          } );
 
           if (this.y < 0) {lost();
           textWon();
@@ -100,7 +86,31 @@ Player.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
 
+var Game = function (){
 
+this.state = 1;
+
+}
+
+Game.prototype.update = function () {
+
+if(
+  allEnemies.forEach
+  (function(val)
+  {val.x <= (player.x + 32) && player.x <= (val.x + 32) && val.y <= (player.y + 32) && player.y <= (val.y + 32)}))
+
+        {game.state = 2;};
+
+
+  };
+
+
+
+Game.prototype.render = function () {
+
+      if(game.state === 2) {lost(); textLost(); reset();};
+
+      }
 
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
@@ -130,6 +140,8 @@ document.addEventListener('keyup', function(e) {
     player.handleInput(allowedKeys[e.keyCode]);
 });
 
+
+
 var lost = function() {
 
   allEnemies.forEach (function(val)
@@ -139,8 +151,7 @@ var lost = function() {
 
 var textLost = function () {
 
-var step, steps = 0,
-              delay = 20;
+        var delay = 20;
 
         function init() {
           Layer2 = document.getElementById('Layer2');
@@ -156,9 +167,9 @@ var step, steps = 0,
           canvasContext.fillStyle = 'white';
 
 
-            step = 0;
-            steps = Layer2.height + 5;
-            RunTextRightToLeft();
+            this.step = 0;
+            this.steps = Layer2.height + 5;
+            if (game.state === 'lost') {RunTextRightToLeft();}
         }
 
         function RunTextRightToLeft() {

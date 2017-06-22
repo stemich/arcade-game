@@ -146,7 +146,11 @@ LayerOne();
             }
         }
 
-        renderEntities();
+          renderEntities();
+
+ 
+
+
     }
 
     /* This function is called by the render function and is called on each game
@@ -192,5 +196,5 @@ LayerOne();
      * from within their app.js files.
      */
     global.ctx = ctx;
-   
+
 })(this);
